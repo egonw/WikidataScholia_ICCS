@@ -1,0 +1,191 @@
+%% BioMed_Central_Tex_Template_v1.06
+%%                                      %
+%  bmc_article.tex            ver: 1.06 %
+%                                       %
+
+%%IMPORTANT: do not delete the first line of this template
+%%It must be present to enable the BMC Submission system to
+%%recognise this template!!
+
+%%% additional documentclass options:
+%  [doublespacing]
+%  [linenumbers]   - put the line numbers on margins
+
+%%% loading packages, author definitions
+
+%\documentclass[twocolumn]{bmcart}% uncomment this for twocolumn layout and comment line below
+%\documentclass[doublespacing]{bmcart}
+\documentclass{bmcart}
+
+%%% Load packages
+%\usepackage{amsthm,amsmath}
+%\RequirePackage{natbib}
+%\RequirePackage[authoryear]{natbib}% uncomment this for author-year bibliography
+\RequirePackage{hyperref}
+\usepackage[utf8]{inputenc} %unicode support
+
+%%% Begin ...
+\begin{document}
+
+%%% Start of article front matter
+\begin{frontmatter}
+
+\begin{fmbox}
+\dochead{Software}
+
+\title{Wikidata and Scholia as a hub linking chemical knowledge}
+
+\author[
+   addressref={aff1},
+   email={egon.willighagen@maastrichtuniversity.nl}
+]{\inits{EW}\fnm{Egon} \snm{Willighagen}}
+\author[
+   addressref={aff1},
+   email={FIXME@maastrichtuniversity.nl}
+]{\inits{DS}\fnm{Denise} \snm{Slenter}}
+\author[
+   addressref={aff2},
+   email={FIXME@FIXME.MORE}
+]{\inits{DM}\fnm{Daniel} \snm{Mietchen}}
+\author[
+   addressref={aff1,aff3},
+   email={FIXME@FIXME.MORE}
+]{\inits{CE}\fnm{Chris} \snm{Evelo}}
+\author[
+   addressref={aff4},
+   email={FIXME@FIXME.MORE}
+]{\inits{FN}\fnm{Finn} \snm{Nielsen}}
+
+\address[id=aff1]{
+  \orgname{Department of Bioinformatics - BiGCaT, NUTRIM, Maastricht University},
+  %\street{P.O. Box 616, UNS 50 Box19},
+  %\postcode{NL-6200 MD},
+  \city{Maastricht},
+  \cny{NL}
+}
+\address[id=aff2]{%
+  \orgname{Data~Science~Institute, University of Virginia},
+  %\street{D\"{u}sternbrooker Weg 20},
+  %\postcode{24105}
+  \city{Charlottesville, Virginia},
+  \cny{USA}
+}
+\address[id=aff3]{%
+  \orgname{Maastricht Centre for Systems Biology - MaCSBio, Maastricht University},
+  %\street{D\"{u}sternbrooker Weg 20},
+  %\postcode{24105}
+  \city{Maastricht},
+  \cny{NL}
+}
+\address[id=aff4]{%
+  \orgname{Cognitive Systems, DTU Compute, Technical University of Denmark},
+  %\street{D\"{u}sternbrooker Weg 20},
+  %\postcode{24105}
+  %\city{Maastricht},
+  \cny{DK}
+}
+
+%\begin{artnotes}
+%\note{Sample of title note}     % note to the article
+%\note[id=n1]{Equal contributor} % note, connected to author
+%\end{artnotes}
+
+\end{fmbox}% comment this for two column layout
+
+
+\begin{abstractbox}
+
+\begin{abstract}
+\end{abstract}
+
+\begin{keyword}
+\kwd{Wikidata}
+\kwd{Scholia}
+\kwd{literature}
+\kwd{database}
+\end{keyword}
+
+\end{abstractbox}
+
+\end{frontmatter}
+
+\section*{Introduction}
+
+Making chemical databases more FAIR (findable, accessible, interoperable, and reusable) benefits
+computational chemistry and cheminformatics. We here discuss Wikidata, a young sister project of
+Wikipedia, with one key difference: it is a machine readable database, making it far more useful for
+interoperability of molecular databases in systems biology~\cite{Mietchen2015,Putman2017}. Thanks to
+the WikiProject Chemistry community on Wikidata, there is a growing amount of information about
+chemical compounds.
+
+\section*{Implementation}
+
+\subsection*{User Interface: Scholia}
+
+Scholia is a Python/Flask-based server system that creates webpages using a template
+approach~\cite{Nielsen2017}.
+It defines templates for concepts around knowledge exchange, such as publications, journals,
+publishers, but also topics. It uses SPARQL queries against the Wikidata Query Service (WDQS,
+\href{http://query.wikidata.org/}{query.wikidata.org}) and visualizes the data in various forms.
+
+\subsection*{Content Generation: Bioclipse}
+
+Furthermore, we used a combination of Bioclipse (\href{http://bioclipse.net/}{bioclipse.net})~\cite{Spjuth2007,Spjuth2009}
+and QuickStatements to add missing chemical compounds for biological
+pathways from WikiPathways~\cite{Pico2008,Slenter2018}. Where needed, new Wikidata properties were proposed.
+
+\section*{Results}
+
+We here introduce our contributions to the WikiProject Chemistry to support FAIR-ification of open chemical knowledge. For example, we proposed new Wikidata properties to annotate compounds with external database identifiers for the EPA CompTox Dashboard~\cite{Williams2017},
+the SPLASH~\cite{Wohlgemuth2016}, and MetaboLights~\cite{Haug2013}. We also introduced a
+Scholia extension~\cite{Nielsen2017}, visualizing data about chemicals and chemical classes: \href{https://tools.wmflabs.org/scholia}{tools.wmflabs.org/scholia}.
+
+\section*{Discussion}
+
+\section*{Conclusion}
+
+
+%\section*{Figures}
+%  \begin{figure}[h!]
+%  \caption{\csentence{Sample figure title.}
+%      A short description of the figure content
+%      should go here.}
+%      \end{figure}
+
+\begin{backmatter}
+
+\section*{Availability and requirements}
+
+\begin{itemize}
+  \item \textbf{Project name}: Scholia
+  \item \textbf{Project home page}: https://github.com/fnielsen/scholia
+  \item \textbf{Operating system(s)}: Platform independent
+  \item \textbf{Programming language}: Python
+  \item \textbf{Other requirements}: Flask, Wikidata
+  \item \textbf{License}: GPL v3
+\end{itemize}
+
+\section*{Competing interests}
+
+\section*{Funding}
+
+\section*{Author's contributions}
+
+\section*{Acknowledgements}
+
+\bibliographystyle{vancouver} % Style BST file (bmc-mathphys, vancouver, spbasic).
+\bibliography{bmc_article}      % Bibliography file (usually '*.bib' )
+
+
+%\section*{Additional Files}
+%  \subsection*{Additional file 1 --- Sample additional file title}
+%    Additional file descriptions text (including details of how to
+%    view the file, if it is in a non-standard format or the file extension).  This might
+%    refer to a multi-page table or a figure.
+%
+%  \subsection*{Additional file 2 --- Sample additional file title}
+%    Additional file descriptions text.
+
+
+\end{backmatter}
+\end{document}
